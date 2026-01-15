@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# allow GLB models inside portfolio
+!public/
+!public/models/
+!public/models/*.glb
