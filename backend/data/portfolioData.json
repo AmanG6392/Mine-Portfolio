@@ -1,0 +1,26 @@
+{
+  "education": {
+    "degree": "B.Tech in Computer Science",
+    "college": "XYZ Institute of Technology",
+    "year": "2023 - 2027",
+    "link": "#education"
+  },
+  "interests": {
+    "fields": ["Web Development", "AI", "Databases", "System Design"],
+    "link": "#about"
+  },
+  "projects": [
+    {
+      "name": "DBGenie",
+      "description": "An AI-powered database query assistant that helps users interact with databases using natural language.",
+      "tech": ["Next.js", "Drizzle ORM", "Turso", "AI SDK"],
+      "link": "#projects"
+    },
+    {
+      "name": "Virtual Chemistry Lab",
+      "description": "A web-based simulation of chemistry experiments for students.",
+      "tech": ["HTML", "CSS", "JavaScript"],
+      "link": "#projects"
+    }
+  ]
+}
