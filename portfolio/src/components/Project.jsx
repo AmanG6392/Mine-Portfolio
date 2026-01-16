@@ -10,7 +10,6 @@ import { Suspense } from "react";
 import Loader from "../functionality/Loader.jsx";
 import { ProjectModel } from "../functionality/ProjectModel.jsx";
 import { Environment } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 const projects = [
   {
@@ -146,31 +145,27 @@ const Project = () => {
           className="absolute inset-0"
           style={{ width: "100vw", height: "100vh" }}
         >
-          <Canvas camera={{ position: [1, 1, 3] }}>
+          <Canvas camera={{ position: [1, 1, 4], fov: 50 }}>
             <Suspense fallback={<Loader />}>
-              {/* 💡 Realistic Lighting */}
-              <ambientLight intensity={0.7} />
-              <directionalLight
-                position={[5, 5, 5]}
-                intensity={1.5}
-                castShadow
+              {/* Simple clean lighting */}
+              <ambientLight intensity={0.5} />
+
+              <directionalLight position={[5, 5, 5]} intensity={1.2} />
+
+              <pointLight
+                position={[-2, 2, 2]}
+                intensity={0.4}
+                distance={6}
+                decay={2}
               />
-              <pointLight position={[-5, 3, -2]} intensity={0.6} />
+
               <Environment preset="sunset" background={false} />
 
-              <EffectComposer>
-                <Bloom
-                  intensity={0.8}
-                  luminanceThreshold={0.1}
-                  luminanceSmoothing={0.9}
-                />
-              </EffectComposer>
-
-              {/* 🌳 Your model */}
+              {/* Model */}
               <Float>
                 <ProjectModel
-                  scale={isMobile ? [1.3, 1.2, 1.4] : [0.7, 0.6, 0.6]}
-                  position={isMobile ? [1, 1, 0.5] : [-3, -1, 0]}
+                  scale={0.3}
+                  position={isMobile ? [1, 1, 0.5] : [-2, -1, 0]}
                   rotation={[0, 1.2, 0]}
                 />
                 <OrbitControls enableZoom={false} />
