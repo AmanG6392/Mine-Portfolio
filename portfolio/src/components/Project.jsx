@@ -64,7 +64,7 @@ const Project = () => {
   const { scrollYProgress } = useScroll();
 
   // Parallax motion for 3D model
-  const modelY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const modelY = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
   const isMobile = useMediaQuery({ maxWidth: 853 });
 
   useEffect(() => {
@@ -165,7 +165,7 @@ const Project = () => {
               <Float>
                 <ProjectModel
                   scale={0.3}
-                  position={isMobile ? [1, 1, 0.5] : [-2, -1, 0]}
+                  position={isMobile ? [0,0,-1] : [-2, -1, 0]}
                   rotation={[0, 1.2, 0]}
                 />
                 <OrbitControls enableZoom={false} />
@@ -178,7 +178,7 @@ const Project = () => {
       </motion.div>
 
       {/* Projects List */}
-      <div className=" flex flex-col w-[100%] md:w-[55vw] z-10 mt-5 ml-auto items-center md:mt-10 rounded-3xl bg-clip-text">
+      <div className="flex flex-col w-full md:w-[55vw] h-[70vh] overflow-y-auto z-10 mt-5 ml-auto pr-4">
         {projects.map((project, i) => {
           const isLeft = i % 2 === 0;
           return (
