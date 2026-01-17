@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useRef} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
+import emailjs from "@emailjs/browser";
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   // state COntact form
@@ -8,6 +10,7 @@ const Header = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const openContactForm = () => setContactFormOpen(true);
   const closeContactForm = () => setContactFormOpen(false);
+  const form = useRef();
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -21,9 +24,17 @@ const Header = () => {
     }, 100);
   };
 
-  const sections = ["home", "about", "projects", "certifications", "contact me"];
+  const sections = [
+    "home",
+    "about",
+    "projects",
+    "experiences",
+    "certifications",
+    "contact me",
+  ];
 
   const [activeSection, setActiveSection] = useState("home");
+
 
   useEffect(() => {
     const onScroll = () => {
@@ -46,6 +57,28 @@ const Header = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        form.current,
+        {
+          publicKey: import.meta.env.VITE_PUBLIC_KEY,
+        },
+      )
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        },
+      );
+  };
 
   return (
     <header className="fixed top-0 w-full z-50 transition-all duration-300 pointer-events-none">
@@ -182,11 +215,11 @@ const Header = () => {
 
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
           <div className="flex space-x-5">
-            <a href="#">
+            <a href="https://github.com/AmanG6392">
               <FiGithub className="h-5 w-5 text-gray-300" />
             </a>
 
-            <a href="#">
+            <a href="https://www.linkedin.com/in/aman-gupta-b94a87308">
               <FiLinkedin className="h-5 w-5 text-gray-300" />
             </a>
           </div>
@@ -211,7 +244,7 @@ const Header = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 bg-black/50   background-blur-sm z-50 flex items-center   justify-center p-4"
+            className="fixed inset-0 bg-black/50   background-blur-sm z-50 flex items-center   justify-center p-4 pointer-events-auto"
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0, y: 30 }}
@@ -230,12 +263,15 @@ const Header = () => {
                   Get In Touch
                 </h1>
                 <button onClick={closeContactForm}>
-                  <FiX className="w-5 h-5   text-gray-300       font-extrabold" />
+                  <FiX className="w-5 h-5   text-gray-300 font-extrabold" />
                 </button>
               </div>
 
               {/* Input Form*/}
-              <form className="space-y-4">
+              <form 
+              ref={form}
+              className="space-y-4" 
+              onSubmit={sendEmail}>
                 <div>
                   <label
                     htmlFor="name"
@@ -246,6 +282,7 @@ const Header = () => {
                   <input
                     type="text"
                     id="name"
+                    name="from_name"
                     placeholder="Your Name"
                     className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
                   />
@@ -258,8 +295,9 @@ const Header = () => {
                     Email ID
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     id="Email"
+                    name="from_email"
                     placeholder=" Your Email Id"
                     className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
                   />
@@ -274,6 +312,7 @@ const Header = () => {
                   <textarea
                     rows="4"
                     id="message"
+                    name="message"
                     placeholder="How can we help you?"
                     className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
                   />
