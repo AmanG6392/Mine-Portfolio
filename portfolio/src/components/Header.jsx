@@ -1,4 +1,4 @@
-import { useEffect, useState ,useRef} from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
 import emailjs from "@emailjs/browser";
@@ -34,7 +34,6 @@ const Header = () => {
   ];
 
   const [activeSection, setActiveSection] = useState("home");
-
 
   useEffect(() => {
     const onScroll = () => {
@@ -80,6 +79,51 @@ const Header = () => {
       );
   };
 
+  const ProfileAvatar = ({ src }) => {
+    const [open, setOpen] = useState(false);
+
+    return (
+      <>
+        {/* Avatar */}
+        <motion.div
+          onClick={() => setOpen(true)}
+          whileHover={{ scale: 1.05 }}
+          className="w-16 aspect-square rounded-full overflow-hidden cursor-pointer
+        ring-2 ring-violet-500/60 dark:ring-violet-400/50
+        animate-ring mr-3 flex-shrink-0"
+        >
+          <img
+            src={src}
+            alt="profile"
+            className="w-full h-full object-cover block"
+          />
+        </motion.div>
+
+        {/* Fullscreen Preview */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              onClick={() => setOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[999] bg-black/80 flex items-center justify-center p-4"
+            >
+              <motion.img
+                src={src}
+                initial={{ scale: 0.85 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.85 }}
+                transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                className="max-w-[90vw] max-h-[90vh] rounded-full"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </>
+    );
+  };
+
   return (
     <header className="fixed top-0 w-full z-50 transition-all duration-300 pointer-events-none">
       <div
@@ -99,8 +143,8 @@ const Header = () => {
           }}
           className="flex items-center"
         >
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-gray-500 to-gray-100 flex items-center justify-center text-purple-600 font-bold text-xl mr-3">
-            M
+          <div className="w-16 aspect-square rounded-full overflow-hidden bg-gradient-to-r from-gray-500 to-gray-100 mr-3 flex-shrink-0   ring-2 ring-violet-500/60 dark:ring-violet-400/50 animate-glow">
+            <ProfileAvatar src="https://res.cloudinary.com/difkartik/image/upload/v1768667623/ee19sjdvhelmietdprik.jpg" />
           </div>
 
           <span className="text-xl font-bold bg-gradient-to-r from-gray-300 to-gray-100 bg-clip-text text-transparent ">
@@ -268,10 +312,7 @@ const Header = () => {
               </div>
 
               {/* Input Form*/}
-              <form 
-              ref={form}
-              className="space-y-4" 
-              onSubmit={sendEmail}>
+              <form ref={form} className="space-y-4" onSubmit={sendEmail}>
                 <div>
                   <label
                     htmlFor="name"
