@@ -148,4 +148,4 @@ export function Astronaut(props) {
   )
 }
 
-useGLTF.preload('/models/tenhun_falling_spaceman_fanart.glb')
+useGLTF.preload('https://res.cloudinary.com/difkartik/image/upload/v1768415674/h8wuybyr2ilm8oj7xdtz.glb')
