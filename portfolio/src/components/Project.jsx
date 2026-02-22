@@ -2,14 +2,10 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ScrollTrigger } from "gsap/all";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, OrbitControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { useMediaQuery } from "react-responsive";
 import { easing } from "maath";
-import { Suspense } from "react";
-import Loader from "../functionality/Loader.jsx";
-import { ProjectModel } from "../functionality/ProjectModel.jsx";
-import { Environment } from "@react-three/drei";
+
 
 const projects = [
   {
@@ -137,46 +133,7 @@ const Project = () => {
       </div>
 
       {/* Background 3D Model */}
-      <motion.div
-        style={{ y: modelY }}
-        className="absolute inset-0 z-0 pointer-events-none"
-      >
-        <figure
-          className="absolute inset-0"
-          style={{ width: "100vw", height: "100vh" }}
-        >
-          <Canvas camera={{ position: [1, 1, 4], fov: 50 }}>
-            <Suspense fallback={<Loader />}>
-              {/* Simple clean lighting */}
-              <ambientLight intensity={0.5} />
-
-              <directionalLight position={[5, 5, 5]} intensity={1.2} />
-
-              <pointLight
-                position={[-2, 2, 2]}
-                intensity={0.4}
-                distance={6}
-                decay={2}
-              />
-
-              <Environment preset="sunset" background={false} />
-
-              {/* Model */}
-              <Float>
-                <ProjectModel
-                  scale={0.3}
-                  position={isMobile ? [0,0,-1] : [-2, -1, 0]}
-                  rotation={[0, 1.2, 0]}
-                />
-                <OrbitControls enableZoom={false} />
-              </Float>
-
-              <Rig />
-            </Suspense>
-          </Canvas>
-        </figure>
-      </motion.div>
-
+      
       {/* Projects List */}
       <div className="flex flex-col w-full md:w-[55vw] h-[70vh] overflow-y-auto z-10 mt-5 ml-auto pr-4">
         {projects.map((project, i) => {
