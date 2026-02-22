@@ -1,9 +1,13 @@
+import React, {useState } from "react";
+
 import { FlipWords } from "./FlipWords";
 import { motion } from "motion/react";
 import AISearchbox from "./AISearch";
+import AIModal from "./AIModal";
 
 const HeroText = () => {
   const words = ["Secure", "Modern", "Scalable"];
+  const [aiResult, setAiResult] = useState(null);
   const variants = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
@@ -96,7 +100,13 @@ const HeroText = () => {
           </motion.p>
         </div>
       </div>
-      <AISearchbox/>
+      <AISearchbox onResult={(data) => setAiResult(data)} />
+       <AIModal
+        isOpen={!!aiResult}
+        content={aiResult}
+        onClose={() => setAiResult(null)}
+      />
+    
     </div>
   );
 };

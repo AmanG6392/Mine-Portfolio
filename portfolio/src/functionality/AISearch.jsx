@@ -1,24 +1,28 @@
 import { useState } from "react";
 import axiosInstance from "../config/Axios.js";
 
-const AISearch = () => {
+const AISearch = ({ onResult }) => {
   const [prompt, setPrompt] = useState("");
-  const [showModal, setShowModal] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const send = async () => {
-  try {
-    const res = await axiosInstance.get(
-      "/ai-res/getAi-result",
-      {
-        params: { prompt }
-      }
-    );
-    console.log(res.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+     console.log("Clicked");
+    if (!prompt.trim()) return;
 
+    try {
+      setLoading(true);
+      const res = await axiosInstance.get("/ai-res/getAi-result", {
+        params: { prompt },
+      });
+
+      onResult(res.data); // 🔥 send result to parent
+      setPrompt("");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="mt-6 w-full max-w-xl">
@@ -35,20 +39,12 @@ const AISearch = () => {
         <button
           className="px-5 py-3 rounded-xl bg-white text-black font-medium
                      hover:bg-gray-200 transition"
-          onClick={ send}           
+          onClick={send}
         >
-          Ask
+          {loading ? "..." : "Ask"}
         </button>
       </div>
-
-       {
-         showModal && (
-          <div className=""> </div>
-         )
-       }
     </div>
-
-    
   );
 };
 
