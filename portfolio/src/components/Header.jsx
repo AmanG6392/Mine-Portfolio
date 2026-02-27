@@ -30,7 +30,7 @@ const Header = () => {
     "projects",
     "experiences",
     "certifications",
-    "contact me",
+    "contact",
   ];
 
   const [activeSection, setActiveSection] = useState("home");

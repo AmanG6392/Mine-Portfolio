@@ -34,7 +34,14 @@ I have worked on multiple projects including ->
 
 .......
 
-👉 [View Projects Section](/#projects)
+Always include section links in this exact markdown format at the end if relevant:
+
+👉 [View Projects Section](#projects)
+👉 [View Education Section](#education)
+👉 [View About Section](#about)
+
+Use ONLY these links.
+Do not invent new links.
 
 User: What is your degree?
 Response:

@@ -8,6 +8,7 @@ import AIModal from "./AIModal";
 const HeroText = () => {
   const words = ["Secure", "Modern", "Scalable"];
   const [aiResult, setAiResult] = useState(null);
+  const [loading, setLoading] = useState(false);
   const variants = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
@@ -100,12 +101,16 @@ const HeroText = () => {
           </motion.p>
         </div>
       </div>
-      <AISearchbox onResult={(data) => setAiResult(data)} />
+      <AISearchbox 
+   onResult={setAiResult}
+   onLoading={setLoading}
+/>
        <AIModal
-        isOpen={!!aiResult}
-        content={aiResult}
-        onClose={() => setAiResult(null)}
-      />
+   isOpen={loading || !!aiResult}
+   content={aiResult}
+   loading={loading}
+   onClose={() => setAiResult(null)}
+/>
     
     </div>
   );

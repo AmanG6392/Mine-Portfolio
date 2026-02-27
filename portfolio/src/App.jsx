@@ -5,6 +5,7 @@ import Project from './components/Project.jsx'
 import Experiences from './components/Experiences.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import Certifications from './components/Certifications.jsx'
 
 function App() {
   return (
@@ -26,8 +27,11 @@ function App() {
       <section id="experiences" className="scroll-mt-24">
         <Experiences />
       </section>
+      <section id="certifications" className="scroll-mt-24">
+        <Certifications />
+      </section>
 
-      <section id="contact me" className="scroll-mt-24">
+      <section id="contact" className="scroll-mt-24">
         <Contact />
       </section>
 
