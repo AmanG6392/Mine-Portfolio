@@ -125,9 +125,10 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 transition-all duration-300 pointer-events-none">
+    <header className="fixed top-0 w-full z-50 relative transition-all duration-300 pointer-events-none">
+      {" "}
       <div
-        className="pointer-events-auto container mx-auto px-4 sm:px-6
+        className=" relative pointer-events-auto container mx-auto px-4 sm:px-6
   lg:px-8 flex items-center justify-between h-16 md:h-20"
       >
         {/*Logo Name */}
@@ -152,7 +153,8 @@ const Header = () => {
           </span>
         </motion.div>
         {/* Desktop navigation*/}
-        <nav className="lg:flex hidden space-x-8">
+        <nav className="lg:flex hidden space-x-8 relative">
+          {" "}
           {sections.map((item, index) => (
             <motion.button
               key={item}
@@ -232,7 +234,6 @@ const Header = () => {
           </motion.button>
         </div>
       </div>
-
       {/*Mobile Menu */}
       <motion.div
         initial={{ opacity: 0, height: 0 }}
@@ -279,7 +280,6 @@ const Header = () => {
           </button>
         </div>
       </motion.div>
-
       {/* Contact */}
       <AnimatePresence>
         {contactFormOpen && (

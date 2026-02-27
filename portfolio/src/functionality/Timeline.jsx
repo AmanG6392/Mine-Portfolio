@@ -2,17 +2,38 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { FlipWords } from "./FlipWords";
+import { gsap } from "gsap";
+
 
 export const Timeline = ({ data }) => {
   const ref = useRef(null);
   const containerRef = useRef(null);
   const [height, setHeight] = useState(0);
+  const sectionRef = useRef(null);
+  const titleLineRef = useRef(null);
 
   useEffect(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
       setHeight(rect.height);
     }
+
+    gsap.fromTo(
+      titleLineRef.current,
+      { width: "0%", opacity: 0 },
+      {
+        width: "100%",
+        opacity: 1,
+        duration: 1.2,
+        delay: 0.2,
+        ease: "power3.inOut",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+      }
+    );
+  
   }, [ref]);
 
   const { scrollYProgress } = useScroll({
@@ -22,26 +43,36 @@ export const Timeline = ({ data }) => {
 
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
-  const words = ["My","Expierences"];const variants = {
+  const words = ["My", "Expierences"];
+  const variants = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
   };
 
-
   return (
     <div className="c-space section-spacing bg-black" ref={containerRef}>
       <motion.div
-                  variants={variants}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ delay: 0.1 }}
-                  className="flex justify-center"
-                >
-                  <FlipWords
-                    words={words}
-                    className="font-black text-white text-5xl md:text-7xl"
-                  />
-                </motion.div>
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.1 }}
+        className="flex justify-center"
+      >
+        <FlipWords
+          words={words}
+          className="font-black text-white text-5xl md:text-7xl"
+        />
+      </motion.div>
+      <motion.div
+        ref={titleLineRef}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
+          delay: 0.7,
+        }}
+        className="w-0 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto opacity-0"
+      ></motion.div>
       <div ref={ref} className="relative pb-20">
         {data.map((item, index) => (
           <div
