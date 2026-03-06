@@ -10,34 +10,37 @@ import { easing } from "maath";
 const projects = [
   {
     id: 1,
-    title: "ChatApp",
-    desc: "A real-time chat application built with Socket.io and React.",
-    img: "/assets/project-1.png",
+    title: " DbGenie",
+    desc: "AI video avatar generator inspired by Heygen.",
+    img: "/assets/DBgenieImage.png",
   },
+
   {
     id: 2,
-    title: "Heygen Clone",
-    desc: "AI video avatar generator inspired by Heygen.",
-    img: "/assets/project-2.png",
+    title: ".ProjectHub",
+    desc: "A real-time chat application AI-powered, Code runner, designing and editing plateform built with Socket.io, React, Node, Stackblitz, Webcontainers + AI intergration",
+    img: "/assets/ProjecthubImage.png",
   },
   {
     id: 3,
+    title: "AvatarFlow",
+    desc: "AI video avatar generator inspired by Heygen.",
+    img: "/assets/project-2.png",
+  },
+  
+  {
+    id: 4,
     title: "Portfolio Website",
     desc: "A personal portfolio showcasing modern 3D effects and animations.",
     img: "/assets/project-3.png",
   },
   {
-    id: 4,
+    id: 5,
     title: "Mountain Scene",
     desc: "Animated landscape built in Three.js with parallax scroll.",
     img: "/assets/mountain-1.png",
   },
-  {
-    id: 5,
-    title: "Dynamic Visuals",
-    desc: "Creative scroll-driven visuals for immersive storytelling.",
-    img: "/assets/mountain-2.png",
-  },
+  
 ];
 
 function Rig() {
@@ -141,7 +144,7 @@ const Project = () => {
           return (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 60 }}
+              initial={{ opacity: 1, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: false, amount: 0.4 }}
