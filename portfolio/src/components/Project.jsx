@@ -25,20 +25,20 @@ const projects = [
     id: 3,
     title: "AvatarFlow",
     desc: "AI video avatar generator inspired by Heygen.",
-    img: "/assets/project-2.png",
+    img: "/assets/avatarFlow.jpeg",
   },
   
   {
     id: 4,
     title: "Portfolio Website",
     desc: "A personal portfolio showcasing modern 3D effects and animations.",
-    img: "/assets/project-3.png",
+    img: "/assets/portfolio.png",
   },
   {
     id: 5,
-    title: "Mountain Scene",
-    desc: "Animated landscape built in Three.js with parallax scroll.",
-    img: "/assets/mountain-1.png",
+    title: "Youtube backend web service",
+    desc: "Web service inspired by You Tube performing streaming ,storing videos images ",
+    img: "/assets/image.png",
   },
   
 ];
