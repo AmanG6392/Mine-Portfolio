@@ -159,16 +159,13 @@ const About = () => {
             className="w-full md:w-2/3 flex items-center justify-end md:pr-[1px]  "
           >
             <h3 className="text-sm md:text-xl font-bold text-purple-200 max-w-xl leading-relaxed">
-              Namaste! I’m Aman Gupta. A passionate Full-Stack Developer who
-              loves to craft seamless digital experiences — from powerful
-              backends to pixel-perfect frontends. I blend creativity and logic
-              to design experiences that don’t just work — they wow. From UI
-              animations to backend APIs, I bring ideas to life. A lifelong
-              learner and Full-Stack Web Developer. I enjoy building
-              interactive, user-focused applications that make technology feel
-              human.
+              Hi, I’m Aman Gupta — a Full-Stack Developer & Machine Learning Enthusiast passionate about building intelligent and impactful digital products. I love transforming ideas into powerful applications by combining scalable backends, interactive frontends, and data-driven ML solutions.
+              <br/>
+              <br/>
+              By blending creativity, logic, and data-driven insights, I build solutions that don’t just work — they evolve and deliver meaningful user experiences.
             </h3>
           </div>
+          <br/>
 
           {/* Right Half - Image */}
           <div

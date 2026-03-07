@@ -35,29 +35,29 @@ const certifications = [
       "Database Design",
       "Problem Solving",
     ],
-    pg:" Advance Skill-Based Industry Certification",
+    pg: " Advance Skill-Based Industry Certification",
     highlight: true,
     badge: "Advanced Skill Certification",
     link: "https://www.hackerrank.com/certificates/iframe/7802e692a4b7",
   },
   {
-  title: "Python (Basic)",
-  issuer: "HackerRank",
-  image: "/assets/certificates/python.jpg",
-  description:
-    "Successfully cleared HackerRank's Python (Basic) certification, demonstrating fundamental knowledge of Python syntax, data types, control structures, functions, and problem-solving skills.",
-  skills: [
-    "Python Syntax",
-    "OOPs",
-    "Real-World Python Skills",
-    "Intermediate Python Skills",
-    "Real-World Python Skills"
-  ],
-  pg: "Skill-Based Industry Certification",
-  highlight: true,
-  badge: "Skill Certification",
-  link: "https://www.hackerrank.com/certificates/iframe/99b8597914a5",
-},
+    title: "Python (Basic)",
+    issuer: "HackerRank",
+    image: "/assets/certificates/python.jpg",
+    description:
+      "Successfully cleared HackerRank's Python (Basic) certification, demonstrating fundamental knowledge of Python syntax, data types, control structures, functions, and problem-solving skills.",
+    skills: [
+      "Python Syntax",
+      "OOPs",
+      "Real-World Python Skills",
+      "Intermediate Python Skills",
+      "Real-World Python Skills",
+    ],
+    pg: "Skill-Based Industry Certification",
+    highlight: true,
+    badge: "Skill Certification",
+    link: "https://www.hackerrank.com/certificates/iframe/99b8597914a5",
+  },
   {
     title: "Software Engineer Certification",
     issuer: "HackerRank",
@@ -70,7 +70,7 @@ const certifications = [
       "Problem Solving",
       "Software Engineering",
     ],
-    pg:"Role-Based Industry Certification",
+    pg: "Role-Based Industry Certification",
     highlight: true,
     badge: "Elite Role Certification",
     link: "https://www.hackerrank.com/certificates/iframe/6d783206d85a",
@@ -87,7 +87,7 @@ const certifications = [
       "Web Development",
       "Software Engineering",
     ],
-    pg:"Skill Certification",
+    pg: "Skill Certification",
     highlight: true,
     badge: "Elite Skill Certification",
     link: "https://www.hackerrank.com/certificates/iframe/1af625471cc9",
@@ -96,6 +96,7 @@ const certifications = [
 
 export default function Certifications() {
   const [selectedCert, setSelectedCert] = useState(null);
+  const [expandedCard, setExpandedCard] = useState(null);
 
   return (
     <section className="relative min-h-screen py-40 px-6 bg-black text-white overflow-hidden">
@@ -178,77 +179,110 @@ export default function Certifications() {
               />
             </div>
 
-
-            <h3 className="text-xl font-semibold mb-1">{cert.title}</h3>
+            <h3
+              className="text-xl font-semibold mb-1 cursor-pointer md:cursor-default"
+              onClick={() =>
+                setExpandedCard(expandedCard === index ? null : index)
+              }
+            >
+              {cert.title}
+            </h3>
 
             <p className="text-xs text-emerald-400 mb-3 tracking-wide">
               {cert.pg}
             </p>
 
-            <div className="flex items-center gap-2 text-gray-400 mb-4">
-              <SiHackerrank className="text-green-500" />
-              {cert.issuer}
+            {/* Hidden on small screens until title click */}
+            <div
+              className={`${
+                expandedCard === index ? "block" : "hidden"
+              } md:hidden`}
+            >
+              <div className="flex items-center gap-2 text-gray-400 mb-4">
+                <SiHackerrank className="text-green-500" />
+                {cert.issuer}
+              </div>
+
+              <p className="text-sm text-gray-400 mb-5">{cert.description}</p>
+
+              <div className="flex flex-wrap gap-2">
+                {cert.skills.map((skill, i) => (
+                  <span
+                    key={i}
+                    className="text-xs bg-white/10 px-3 py-1 rounded-full border border-white/20 hover:bg-emerald-500/20 transition"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <p className="text-sm text-gray-400 mb-5">{cert.description}</p>
+            {/* Always visible on large screens */}
+            <div className="hidden md:block">
+              <div className="flex items-center gap-2 text-gray-400 mb-4">
+                <SiHackerrank className="text-green-500" />
+                {cert.issuer}
+              </div>
 
-            <div className="flex flex-wrap gap-2">
-              {cert.skills.map((skill, i) => (
-                <span
-                  key={i}
-                  className="text-xs bg-white/10 px-3 py-1 rounded-full border border-white/20 hover:bg-emerald-500/20 transition"
-                >
-                  {skill}
-                </span>
-              ))}
+              <p className="text-sm text-gray-400 mb-5">{cert.description}</p>
+
+              <div className="flex flex-wrap gap-2">
+                {cert.skills.map((skill, i) => (
+                  <span
+                    key={i}
+                    className="text-xs bg-white/10 px-3 py-1 rounded-full border border-white/20 hover:bg-emerald-500/20 transition"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-
       {/* Modal */}
-<AnimatePresence>
-  {selectedCert && (
-    <motion.div
-      className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={() => setSelectedCert(null)}   // ✅ Close when clicking anywhere
-    >
-      <motion.div
-        className="bg-gray-900 p-6 rounded-2xl max-w-2xl w-2/3 relative"
-        initial={{ scale: 0.8 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.8 }}
-        onClick={(e) => e.stopPropagation()}   // ✅ Prevent close when clicking inside modal
-      >
-        <button
-          onClick={() => setSelectedCert(null)}
-          className="absolute top-4 right-4 text-white text-xl"
-        >
-          ✕
-        </button>
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCert(null)} // ✅ Close when clicking anywhere
+          >
+            <motion.div
+              className="bg-gray-900 p-6 rounded-2xl max-w-2xl w-2/3 relative"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              onClick={(e) => e.stopPropagation()} // ✅ Prevent close when clicking inside modal
+            >
+              <button
+                onClick={() => setSelectedCert(null)}
+                className="absolute top-4 right-4 text-white text-xl"
+              >
+                ✕
+              </button>
 
-        <img
-          src={selectedCert.image}
-          alt="certificate"
-          className="w-full rounded-xl mb-6"
-        />
+              <img
+                src={selectedCert.image}
+                alt="certificate"
+                className="w-full rounded-xl mb-6"
+              />
 
-        <a
-          href={selectedCert.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 transition py-3 rounded-lg font-semibold"
-        >
-          Verify Certificate <FiExternalLink />
-        </a>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+              <a
+                href={selectedCert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 transition py-3 rounded-lg font-semibold"
+              >
+                Verify Certificate <FiExternalLink />
+              </a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

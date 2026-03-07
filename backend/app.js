@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors"
 import morgan from "morgan";
 import AiRouter from "./routes/aiRouter.js"
+import emailRouter from "./routes/emailRouter.js"
 
 const app = express();
 app.use(morgan('dev'));
@@ -12,6 +13,7 @@ app.use(cors(
 //     res.send('Backend is running successfully!');
 // })
 app.use('/ai-res',AiRouter)
+app.use('/email',emailRouter)
 
 export default app
 

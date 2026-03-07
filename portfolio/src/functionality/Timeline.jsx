@@ -49,8 +49,8 @@ export const Timeline = ({ data }) => {
             className="flex justify-start pt-10 md:pt-40 md:gap-10"
           >
             <div className="sticky z-40 flex flex-col items-center self-start max-w-xs md:flex-row top-40 lg:max-w-sm md:w-full">
-              <div className="absolute flex items-center justify-center w-10 h-10 rounded-full -left-[15px] bg-midnight ml-3">
-                <div className="w-4 h-4 p-2 border rounded-full bg-neutral-800 border-neutral-700" />
+              <div className="absolute flex items-center justify-center w-10 h-10 rounded-full -left-[15px] bg-midnight ml-6.5">
+                <div className="w-4 h-4 p-3 border rounded-full bg-neutral-800 border-neutral-700" />
               </div>
               <div className="flex-col hidden gap-2 text-xl font-bold md:flex md:pl-20 md:text-4xl text-neutral-300">
                 <h3>{item.date}</h3>
@@ -76,7 +76,7 @@ export const Timeline = ({ data }) => {
           style={{
             height: height + "px",
           }}
-          className="absolute md:left-1 left-1 top-0 overflow-hidden w-[5px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-700 to-transparent to-[99%] ml-3"
+          className="absolute md:left-1 left-1 top-0 overflow-hidden w-[5px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-700 to-transparent to-[99%] ml-6"
         >
           <motion.div
             style={{

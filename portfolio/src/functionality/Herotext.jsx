@@ -54,7 +54,7 @@ const HeroText = () => {
             animate="visible"
             transition={{ delay: 1.8 }}
           >
-            Web Solutions
+            Web & ML Solutions
           </motion.p>
         </div>
       </div>
